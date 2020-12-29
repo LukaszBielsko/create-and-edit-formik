@@ -1,25 +1,27 @@
-import logo from './logo.svg';
+import { useState, useEffect } from 'react'
+import initialForms from './initialForms'
 import './App.css';
 
-function App() {
+import FillTheForm from './FillTheForm'
+import EditForms from './EditForms'
+
+const App = () => {
+
+  const [forms, setForms] = useState([])
+
+  useEffect(() => {
+    setForms(initialForms)
+  }, [])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <FillTheForm setForms={setForms} />
+      <div>
+        <EditForms forms={forms} setForms={setForms} />
+      </div>
     </div>
-  );
+  )
+
 }
 
 export default App;
